@@ -101,17 +101,12 @@ We support two transport types: stdio and sse.
 |`text_to_audio`|Convert text to audio with a given voice|
 |`list_voices`|List all voices available|
 |`voice_clone`|Clone a voice using provided audio files|
-|`play_audio`|Play a local or remote audio file|
 |`generate_video`|Generate a video from a prompt|
 |`text_to_image`|Generate a image from a prompt|
 |`query_video_generation`|Query the result of video generation task|
 |`voice_design`|Generate a voice from a prompt using preview text|
 
 ## Release Notes
-
-### August 2026
-
-- Upgraded to the official MCP Python SDK v2.
 
 ### July 2, 2025
 

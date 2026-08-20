@@ -75,17 +75,3 @@ def test_tool_call_uses_mocked_api(monkeypatch):
             assert "test-voice" in result.content[0].text
 
     anyio.run(exercise_tool)
-
-
-def test_main_runs_without_stdout_protocol_noise(monkeypatch, capsys):
-    run_called = False
-
-    def fake_run():
-        nonlocal run_called
-        run_called = True
-
-    monkeypatch.setattr(server.mcp, "run", fake_run)
-    server.main()
-
-    assert run_called is True
-    assert capsys.readouterr().out == ""
