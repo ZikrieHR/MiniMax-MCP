@@ -37,7 +37,7 @@
   MiniMax官方模型上下文协议(MCP)服务器，支持与强大的文本转语音和视频/图像生成API交互。允许MCP客户端如<a href="https://www.anthropic.com/claude">Claude Desktop</a>、<a href="https://www.cursor.so">Cursor</a>、<a href="https://codeium.com/windsurf">Windsurf</a>、<a href="https://github.com/openai/openai-agents-python">OpenAI Agents</a>等生成语音、克隆声音、生成视频、生成图像等功能。
 </p>
 
-> 💡 推荐优先使用 **[MiniMax CLI (mmx-cli)](https://github.com/MiniMax-AI/cli)** — MiniMax 官方命令行工具，支持最新模型及更多功能（文本对话、图片理解、搜索、音乐翻唱等），支持作为 Claude Code、Cursor、OpenClaw 等 AI Agent 的技能接入。
+> 💡 推荐优先使用 **[MiniMax CLI (mmx-cli)](https://github.com/MiniMax-AI/cli)** — MiniMax 官方命令行工具，支持最新模型及更多功能（文本对话、图片理解、搜索等），支持作为 Claude Code、Cursor、OpenClaw 等 AI Agent 的技能接入。
 
 ## Documentation
 - [English Documentation](README.md)
@@ -105,7 +105,6 @@
 |`voice_clone`|根据指定音频文件克隆音色|
 |`generate_video`|根据指定 prompt 生成视频|
 |`text_to_image`|根据指定 prompt 生成图片|
-|`music_generation`|根据指定 prompt 和歌词生成音乐|
 |`voice_design`|根据指定 prompt 生成音色和试听文本|
 
 ## 更新日志
@@ -115,12 +114,10 @@
 #### 🆕 新增功能
 - **音色设计**: 新增 `voice_design` 工具 - 根据描述性提示词创建自定义音色并生成试听音频
 - **视频生成增强**: 新增 `MiniMax-Hailuo-02` 模型，支持超清画质和时长/分辨率控制
-- **音乐生成**: 采用 `music-1.5` 模型增强 `music_generation` 工具
 
 #### 📈 功能增强
 - `voice_design` - 根据文本描述生成个性化音色
 - `generate_video` - 现在支持 MiniMax-Hailuo-02 模型，可选择 6s/10s 时长和 768P/1080P 分辨率
-- `music_generation` - 采用 music-1.5 模型进行高质量音乐创作
 
 ## FAQ
 ### 1. invalid api key

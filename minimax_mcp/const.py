@@ -1,7 +1,6 @@
 # speech model default values
 DEFAULT_VOICE_ID = "female-shaonv"
 DEFAULT_SPEECH_MODEL = "speech-2.8-hd"
-DEFAULT_MUSIC_MODEL = "music-2.6"
 DEFAULT_SPEED = 1.0
 DEFAULT_VOLUME = 1.0
 DEFAULT_PITCH = 0
