@@ -103,14 +103,17 @@
 |`text_to_audio`|使用指定音色将文本生成音频|
 |`list_voices`|查询所有可用音色|
 |`voice_clone`|根据指定音频文件克隆音色|
+|`play_audio`|播放本地或远程音频文件|
 |`generate_video`|根据指定 prompt 生成视频|
 |`text_to_image`|根据指定 prompt 生成图片|
+|`query_video_generation`|查询视频生成任务结果|
 |`voice_design`|根据指定 prompt 生成音色和试听文本|
 
 ## 更新日志
 
 ### 2026年8月
 
+- 升级至官方 MCP Python SDK v2。
 - 移除已下线的音乐生成工具。
 
 ### 2025年7月2日

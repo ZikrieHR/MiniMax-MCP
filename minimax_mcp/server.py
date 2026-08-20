@@ -16,7 +16,7 @@ import base64
 import requests
 import time
 from dotenv import load_dotenv
-from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer
 from mcp.types import TextContent
 from minimax_mcp.utils import (
     build_output_path,
@@ -24,9 +24,28 @@ from minimax_mcp.utils import (
     process_input_file,
     play
 )
-from pathlib import Path
 
-from minimax_mcp.const import *
+from minimax_mcp.const import (
+    DEFAULT_BITRATE,
+    DEFAULT_CHANNEL,
+    DEFAULT_EMOTION,
+    DEFAULT_FORMAT,
+    DEFAULT_LANGUAGE_BOOST,
+    DEFAULT_PITCH,
+    DEFAULT_SAMPLE_RATE,
+    DEFAULT_SPEECH_MODEL,
+    DEFAULT_SPEED,
+    DEFAULT_T2I_MODEL,
+    DEFAULT_T2V_MODEL,
+    DEFAULT_VOICE_ID,
+    DEFAULT_VOLUME,
+    ENV_FASTMCP_LOG_LEVEL,
+    ENV_MINIMAX_API_HOST,
+    ENV_MINIMAX_API_KEY,
+    ENV_MINIMAX_MCP_BASE_PATH,
+    ENV_RESOURCE_MODE,
+    RESOURCE_MODE_URL,
+)
 from minimax_mcp.exceptions import MinimaxAPIError, MinimaxRequestError
 from minimax_mcp.client import MinimaxAPIClient
 
@@ -42,7 +61,7 @@ if not api_key:
 if not api_host:
     raise ValueError("MINIMAX_API_HOST environment variable is required")
 
-mcp = FastMCP("Minimax",log_level=fastmcp_log_level)
+mcp = MCPServer("Minimax", log_level=fastmcp_log_level)
 api_client = MinimaxAPIClient(api_key, api_host)
 
 
@@ -115,7 +134,7 @@ def text_to_audio(
         audio_data = response_data.get('data', {}).get('audio', '')
         
         if not audio_data:
-            raise MinimaxRequestError(f"Failed to get audio data from response")
+            raise MinimaxRequestError("Failed to get audio data from response")
         if resource_mode == RESOURCE_MODE_URL:
             return TextContent(
                 type="text",
@@ -223,7 +242,7 @@ def voice_clone(
             
         file_id = response_data.get("file",{}).get("file_id")
         if not file_id:
-            raise MinimaxRequestError(f"Failed to get file_id from upload response")
+            raise MinimaxRequestError("Failed to get file_id from upload response")
 
         # step2: clone voice
         payload = {
@@ -646,7 +665,6 @@ def voice_design(
         )
 
 def main():
-    print("Starting Minimax MCP server")
     """Run the Minimax MCP server"""
     mcp.run()
 

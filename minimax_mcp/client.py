@@ -17,10 +17,10 @@ class MinimaxAPIClient:
         self.api_key = api_key
         self.api_host = api_host
         self.session = requests.Session()
-        self.session.headers.update({
+        self._default_headers = {
             'Authorization': f'Bearer {api_key}',
             'MM-API-Source': 'Minimax-MCP'
-        })
+        }
 
     def _make_request(
         self, 
@@ -44,14 +44,20 @@ class MinimaxAPIClient:
         """
         url = f"{self.api_host}{endpoint}"
         
-        # Set Content-Type based on whether files are being uploaded
+        # Build headers per request. MCP SDK v2 runs synchronous tools in worker
+        # threads, so mutating shared Session headers here would race concurrent
+        # JSON and multipart requests.
+        headers = requests.structures.CaseInsensitiveDict(self._default_headers)
+        headers.update(kwargs.pop('headers', {}))
+
         files = kwargs.get('files')
         if not files:
-            self.session.headers['Content-Type'] = 'application/json'
+            headers.setdefault('Content-Type', 'application/json')
         else:
             # Remove Content-Type header for multipart/form-data
             # requests library will set it automatically with the correct boundary
-            self.session.headers.pop('Content-Type', None)
+            headers.pop('Content-Type', None)
+        kwargs['headers'] = headers
         
         try:
             response = self.session.request(method, url, **kwargs)
@@ -92,4 +98,4 @@ class MinimaxAPIClient:
         
     def post(self, endpoint: str, **kwargs) -> Dict[str, Any]:
         """Make a POST request."""
-        return self._make_request("POST", endpoint, **kwargs) 
+        return self._make_request("POST", endpoint, **kwargs)
