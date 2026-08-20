@@ -112,21 +112,16 @@ We support two transport types: stdio and sse.
 ### August 2026
 
 - Upgraded to the official MCP Python SDK v2.
-- Removed the retired `music_generation` tool.
 
 ### July 2, 2025
-
-> Historical note: the Music tool described below has been retired and is no longer available.
 
 #### 🆕 What's New
 - **Voice Design**: New `voice_design` tool - create custom voices from descriptive prompts with preview audio
 - **Video Enhancement**: Added `MiniMax-Hailuo-02` model with ultra-clear quality and duration/resolution controls  
-- **Music Generation (retired)**: Enhanced the former Music tool with the `music-1.5` model
 
 #### 📈 Enhanced Tools
 - `voice_design` - Generate personalized voices from text descriptions
 - `generate_video` - Now supports MiniMax-Hailuo-02 with 6s/10s duration and 768P/1080P resolution options
-- Music generation (retired) - Previously provided high-quality music creation with the music-1.5 model
 
 ## FAQ
 ### 1. invalid api key
